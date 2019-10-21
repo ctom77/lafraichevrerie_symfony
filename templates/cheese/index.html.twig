@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos fromages{% endblock %}
+
+
+
+{% block body %}
+<div class="container">
+{% if category is defined %}
+    <h1>{{ category[0].title }}</h1>
+{% endif %}
+{% if category is not defined %}
+    <h1>Tous les fromages</h1>
+{% endif %}
+
+    <div class="row mt-5 mb-5">
+        {% for cheese in cheeses %}
+        {% set url = path('cheeses_show', {'slug':cheese.slug}) %}
+        <div class="col-md-4">
+            <div class="card bg-light mb-3">
+                <div class="card-header text-center">
+                    <strong>{{ cheese.price }} euros</strong><br>
+                    <strong>{{ cheese.category.title }}</strong>
+
+                    <img src="{{ cheese.image }}" alt="Image du fromage"
+                        style="height: 200px; width: 100%; display: block">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ cheese.title }}
+                        </h4>
+                        <p class="card-text">{{ cheese.description }}</p>
+                        <a href="{{ url }}" class="btn btn-secondary">En savoir plus</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

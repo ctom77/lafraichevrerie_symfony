@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ cheese.title }}{% endblock %}
+
+{% block body %}
+<div class="container">
+<div class="row mt-5 mb-5" >
+        <div class="col-md-4 text-center" style="margin:auto !important; width:100%; >
+            <div class="card bg-light mb-3">
+                <div class="card-header text-center">
+                    <strong>{{ cheese.price }} euros</strong><br>
+                    <strong>{{ cheese.category.title }}</strong>
+
+                    <img src="{{ cheese.image }}" alt="Image du fromage"
+                        style="height: 200px; width: 100%; display: block">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ cheese.title }}
+                        </h4>
+                        <p class="card-text">{{ cheese.description }}</p>
+                        <form action="">
+                        <label for="Nombre de fromage que vous souhaitez commander"></label>
+                        <input type="number">
+                        <input type="submit" value="ajouter au panier"  >
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}

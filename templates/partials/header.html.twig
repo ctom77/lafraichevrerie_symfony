@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Lafraichevrerie</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+        aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Qui suis-je</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Culture fromagère</a>
+            </li>
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                <button type="button" class="btn btn-info">Nos fromages</button>
+                <div class="btn-group" role="group">
+                    <button id="btnGroupDrop3" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false"></button>
+                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop3" x-placement="bottom-start"
+                        style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">
+                        <a class="dropdown-item" href="{{ path('cheeses') }}">Toutes catégories</a>
+                        
+                        {% for category in categories %}
+                        {% set url = path('cheese_category', {'slug':category.slug}) %}
+                        
+                        <a class="dropdown-item" href=" {{ url }} ">{{ category.title }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+        {% if app.user %}
+            <li class="nav-item">
+                <a href="" class="nav-link">Mon compte</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ path('account_logout') }}" class="nav-link">Déconnexion</a>
+            </li>
+        {% else %}
+            <li class="nav-item">
+                <a href="{{ path('account_register') }}" class="nav-link">Inscription</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ path('account_login')}}" class="nav-link">Connexion</a>
+            </li>
+        {% endif %}
+        </ul>
+
+    </div>
+</nav>
+<div class="container mt-3">
+{% for label, messages in app.flashes %}
+    <div class="alert alert-{{label}}">
+    {% for message in messages %}
+    <p>{{message}}</p>
+    {% endfor %}
+    </div>
+{% endfor %}
+</div>
+
